@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <nav class="sidebar">
+
+        <div class="profile-section">
+            <div class="avatar"><i class="fas fa-user"></i></div>
+            <div class="user-name">ADMIN<br></div>
+        </div>
+
+        <div class="nav-menu">
+            <a href="#" class="nav-item active" onclick="openTab(event, 'tab-home')">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="#" class="nav-item" onclick="openTab(event, 'tab-detail')">
+                <i class="fas fa-info-circle"></i>
+            </a>
+            <a href="#" class="nav-item"><i class="fas fa-cog"></i></a>
+            <a href="#" class="nav-item"><i class="fas fa-envelope"></i></a>
+        </div>
+        
+        <div style="margin-top: auto; padding-bottom: 20px; width: 100%; text-align: center;">
+            <a href="#" class="nav-item" style="color: #ef5350;" onclick="alert('Admin Log out')">
+                <i class="fas fa-power-off"></i>
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title" id="page-title">home</h1>
+        </div>
+
+<div id="tab-home" class="tab-content active">
+    <div class="dashboard-grid">
+        
+        <div class="card span-2">
+            <div class="card-title">
+                <i class="fas fa-brain" style="color: var(--color-purple);"></i> Bản đồ năng lực hành vi
+            </div>
+            
+            <div class="radar-chart-container">
+                <svg viewBox="0 0 200 180" class="radar-svg">
+                    <polygon points="100,20 176,75 147,164 53,164 24,75" class="radar-grid"/>
+                    <polygon points="100,52 145,85 128,138 72,138 55,85" class="radar-grid"/>
+                    
+                    <line x1="100" y1="100" x2="100" y2="20" class="radar-axis"/>
+                    <line x1="100" y1="100" x2="176" y2="75" class="radar-axis"/>
+                    <line x1="100" y1="100" x2="147" y2="164" class="radar-axis"/>
+                    <line x1="100" y1="100" x2="53" y2="164" class="radar-axis"/>
+                    <line x1="100" y1="100" x2="24" y2="75" class="radar-axis"/>
+
+                    <polygon points="100,30 160,85 130,150 60,150 40,85" class="radar-area"/>
+                    
+                    <circle cx="100" cy="30" r="3" class="radar-point"/>
+                    <circle cx="160" cy="85" r="3" class="radar-point"/>
+                    <circle cx="130" cy="150" r="3" class="radar-point"/>
+                    <circle cx="60" cy="150" r="3" class="radar-point"/>
+                    <circle cx="40" cy="85" r="3" class="radar-point"/>
+
+                    <text x="100" y="15" text-anchor="middle" class="radar-label">Lắng nghe</text>
+                    <text x="190" y="75" text-anchor="middle" class="radar-label">Mất tập trung</text>
+                    <text x="160" y="180" text-anchor="middle" class="radar-label">Gật đầu</text>
+                    <text x="40" y="180" text-anchor="middle" class="radar-label">Xao nhãng</text>
+                    <text x="10" y="75" text-anchor="middle" class="radar-label">Vắng mặt</text>
+                </svg>
+            </div>
+            <div style="text-align: center; margin-top: 5px; font-size: 0.8rem; color: #888;">
+                Đánh giá tổng quan: <span style="color: var(--color-purple); font-weight: bold;">Khá Tốt</span>
+            </div>
+        </div>
+
+        <div class="card span-2">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <div class="card-title" style="margin-bottom: 0;">Thời gian tập trung (Giờ)</div>
+        <button onclick="simulateWeeklyData()" style="border: none; background: #f1f5f9; padding: 5px 10px; border-radius: 4px; cursor: pointer; color: #555; font-size: 0.75rem;">
+            <i class="fas fa-sync-alt"></i> Random
+        </button>
+    </div>
+
+    <div id="weeklyChart" class="chart-bars" style="height: 120px; align-items: flex-end; padding-bottom: 5px; gap: 8px;">
+        </div>
+
+    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 10px; font-size: 0.75rem; color: #666;">
+        <span><span style="color:var(--color-teal)">●</span> >8h (Tốt)</span>
+        <span><span style="color:var(--color-purple)">●</span> 5-8h (Khá)</span>
+        <span><span style="color:var(--color-pink)">●</span> <5h (Yếu)</span>
+    </div>
+</div>
+
+            <div class="card span-1">
+                <div class="card-title" style="text-align: center; margin-bottom: 15px;">Tỉ lệ tập trung</div>
+                <div class="multi-donut">
+                    <div class="inner-donut">
+                        <div class="text-center-donut">
+                            85%<br><span style="color:#ccc; font-weight:300; font-size: 8px;">FOCUS</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 10px; font-size: 0.8rem; font-weight: bold; color: var(--color-purple);">
+                    Đang học
+                </div>
+            </div>
+
+        <div class="card span-1">
+            <div class="chart-value" style="color: var(--color-teal);">1h</div>
+            <div class="card-title">Tổng giờ học</div>
+            <svg viewBox="0 0 100 40" style="width: 100%; height: 50px;">
+                <path d="M0,40 L0,35 L20,20 L40,30 L60,10 L80,25 L100,15 L100,40 Z" fill="#26c6da" opacity="0.6" />
+            </svg>
+        </div>
+        
+        <div class="card span-2">
+            <div class="card-title"><i class="fas fa-history"></i> Nhật ký nhanh</div>
+            <div style="font-size: 0.8rem; color: #555;">
+                <p style="margin-bottom: 8px; border-left: 3px solid var(--color-teal); padding-left: 8px;">
+                    <span style="color:#888; font-size:0.7rem;">10:00 AM</span> - Bắt đầu
+                </p>
+                <p style="margin-bottom: 8px; border-left: 3px solid var(--color-pink); padding-left: 8px;">
+                    <span style="color:#888; font-size:0.7rem;">10:04 AM</span> - Phát hiện mất tập trung 
+                </p>
+                 <p style="margin-bottom: 8px; border-left: 3px solid var(--color-pink); padding-left: 8px;">
+                    <span style="color:#888; font-size:0.7rem;">10:07 AM</span> - Phát hiện vắng 
+                </p>
+                 <p style="margin-bottom: 8px; border-left: 3px solid var(--color-pink); padding-left: 8px;">
+                    <span style="color:#888; font-size:0.7rem;">10:07 AM</span> - Phát hiện choáng váng 
+                </p>
+                 <p style="margin-bottom: 8px; border-left: 3px solid var(--color-pink); padding-left: 8px;">
+                    <span style="color:#888; font-size:0.7rem;">10:12 AM</span> - Phát hiện xao nhãng 
+                </p>
+                 <p style="border-left: 3px solid var(--color-purple); padding-left: 8px;">
+                    <span style="color:#888; font-size:0.7rem;">11:00 AM</span> - Kết thúc
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+       <div id="tab-detail" class="tab-content">
+    <div class="dashboard-grid">
+        
+        <div class="card span-4" style="grid-column: span 4;">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <div class="card-title" style="margin-bottom: 0;">
+                    <i class="fas fa-user-graduate"></i> Danh sách học sinh
+                </div>
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="studentSearch" class="search-input" placeholder="Tìm tên hoặc ID..." onkeyup="filterTable()">
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Họ Tên</th>
+                            <th>Điểm Hành Vi</th>
+                            <th>Trạng Thái</th>
+                            <th style="text-align: right;">Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="studentModal" class="modal-overlay" onclick="closeModalOnOutside(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            
+            <div class="modal-header">
+                <img id="m-img" src="" alt="Avatar" class="modal-avatar">
+                <div>
+                    <h2 id="m-name" style="color: var(--color-sidebar);">Ten Hoc Sinh</h2>
+                    <p id="m-id" style="color: #888;">ID: HS001</p>
+                    <span id="m-status" class="badge badge-good">Tốt</span>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+            <div class="modal-body">
+                <div style="margin-bottom: 15px;">
+                    <label style="font-weight: bold; color: #555;">Điểm hành vi:</label>
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--color-purple);" id="m-score">85</div>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label style="font-weight: bold; color: #555;">Ghi chú giáo viên:</label>
+                    <p id="m-note" style="background: #f9f9f9; padding: 10px; border-radius: 5px; color: #333; margin-top: 5px;">
+                        Nội dung ghi chú...
+                    </p>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button class="btn-action btn-teal"><i class="fas fa-chart-pie"></i> Xem biểu đồ</button>
+                    <button class="btn-action btn-pink"><i class="fas fa-exclamation-triangle"></i> Gửi cảnh báo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </main>
+
+    <script>
+        function openTab(evt, tabName) {
+            // 1. Ẩn tất cả nội dung tab
+            var i, tabContent, navItems;
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+                tabContent[i].classList.remove("active");
+            }
+
+            // 2. Xóa class 'active' khỏi tất cả các item ở menu trái
+            navItems = document.getElementsByClassName("nav-item");
+            for (i = 0; i < navItems.length; i++) {
+                navItems[i].className = navItems[i].className.replace(" active", "");
+            }
+
+            // 3. Hiển thị tab hiện tại
+            document.getElementById(tabName).style.display = "block";
+            
+            // 4. Thêm class active vào nút được bấm
+            evt.currentTarget.className += " active";
+            
+            // 5. Đổi tiêu đề trang (Optional)
+            var title = "";
+            if(tabName === 'tab-home') title = "home";
+            if(tabName === 'tab-detail') title = "Chi tiết";
+            document.getElementById("page-title").innerText = title;
+        }
+    </script>
+</body>
+<script src="scripts.js"></script>
+</html>

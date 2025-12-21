@@ -1,0 +1,549 @@
+       :root {
+           --bg-sidebar: #2c3e50;
+           --bg-body: #cfd8dc;
+           --color-pink: #ec407a;
+           --color-teal: #26c6da;
+           --color-purple: #ab47bc;
+           --card-bg: #ffffff;
+       }
+
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+           font-family: 'Roboto', sans-serif;
+       }
+
+       body {
+           display: flex;
+           min-height: 100vh;
+           background-color: var(--bg-body);
+       }
+
+       /* Sidebar Style */
+       .sidebar {
+           width: 90px;
+           background-color: var(--bg-sidebar);
+           color: white;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           padding-top: 20px;
+           flex-shrink: 0;
+       }
+
+       .logo-text {
+           font-size: 10px;
+           font-weight: bold;
+           text-align: center;
+           line-height: 1.2;
+           margin-bottom: 20px;
+           letter-spacing: 1px;
+       }
+
+       .profile-section {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           margin-bottom: 30px;
+           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+           padding-bottom: 20px;
+           width: 100%;
+       }
+
+       .avatar {
+           width: 50px;
+           height: 50px;
+           background-color: #fff;
+           border-radius: 50%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           margin-bottom: 5px;
+           color: #333;
+           font-size: 24px;
+       }
+
+       .user-name {
+           font-size: 10px;
+           text-align: center;
+           text-transform: uppercase;
+       }
+
+       .nav-menu {
+           display: flex;
+           flex-direction: column;
+           width: 100%;
+           gap: 10px;
+       }
+
+       .nav-item {
+           height: 50px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           color: #b0bec5;
+           text-decoration: none;
+           transition: 0.3s;
+           font-size: 1.2rem;
+           border-left: 3px solid transparent;
+           cursor: pointer;
+       }
+
+       .nav-item:hover,
+       .nav-item.active {
+           color: white;
+           background-color: rgba(255, 255, 255, 0.1);
+           border-left-color: var(--color-pink);
+       }
+
+       /* Main Content */
+       .main-content {
+           flex: 1;
+           padding: 20px 30px;
+           overflow-y: auto;
+       }
+
+       .page-header {
+           margin-bottom: 20px;
+       }
+
+       .page-title {
+           font-weight: 300;
+           font-size: 1.5rem;
+           color: black;
+           letter-spacing: 1px;
+           text-transform: uppercase;
+       }
+
+       /* Grid System */
+       .dashboard-grid {
+           display: grid;
+           grid-template-columns: repeat(4, 1fr);
+           grid-template-rows: repeat(2, auto);
+           gap: 20px;
+       }
+
+       /* Card Style */
+       .card {
+           background: var(--card-bg);
+           border-radius: 4px;
+           padding: 20px;
+           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+           display: flex;
+           flex-direction: column;
+       }
+
+       .card-title {
+           font-size: 0.9rem;
+           color: #90a4ae;
+           margin-bottom: 15px;
+           font-weight: 300;
+       }
+
+       /* Chart CSS (Giữ nguyên từ Index 2) */
+       .chart-bars {
+           display: flex;
+           align-items: flex-end;
+           justify-content: space-between;
+           height: 100px;
+           padding-top: 10px;
+       }
+
+       .bar {
+           width: 12px;
+           border-radius: 2px 2px 0 0;
+       }
+
+       .bg-purple {
+           background-color: var(--color-purple);
+       }
+
+       .bg-teal {
+           background-color: var(--color-teal);
+       }
+
+       .bg-pink {
+           background-color: var(--color-pink);
+       }
+
+       .chart-donut {
+           width: 100px;
+           height: 100px;
+           border-radius: 50%;
+           background: conic-gradient(var(--color-pink) 0% 35%, var(--color-purple) 35% 55%, var(--color-teal) 55% 100%);
+           margin: 0 auto;
+           position: relative;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+
+       .chart-donut::after {
+           content: "";
+           width: 50px;
+           height: 50px;
+           background: white;
+           border-radius: 50%;
+           position: absolute;
+       }
+
+       .chart-value {
+           font-size: 1.5rem;
+           font-weight: bold;
+           color: var(--color-pink);
+       }
+
+       .multi-donut {
+           width: 100px;
+           height: 100px;
+           margin: 0 auto;
+           border-radius: 50%;
+           border: 8px solid var(--color-purple);
+           border-top-color: transparent;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+
+       .inner-donut {
+           width: 70px;
+           height: 70px;
+           border-radius: 50%;
+           border: 8px solid var(--color-teal);
+           border-right-color: transparent;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+
+       .text-center-donut {
+           font-size: 0.8rem;
+           color: #ec407a;
+           font-weight: bold;
+       }
+
+       /* Layout classes */
+       .span-2 {
+           grid-column: span 2;
+       }
+
+       .span-1 {
+           grid-column: span 1;
+       }
+
+       .row-2 {
+           grid-row: span 2;
+       }
+
+       /* TAB LOGIC */
+       .tab-content {
+           display: none;
+           animation: fadeIn 0.4s;
+       }
+
+       .tab-content.active {
+           display: block;
+       }
+
+       @keyframes fadeIn {
+           from {
+               opacity: 0;
+               transform: translateY(10px);
+           }
+
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+
+       /* Responsive */
+       @media (max-width: 900px) {
+           .dashboard-grid {
+               grid-template-columns: repeat(2, 1fr);
+           }
+       }
+
+       @media (max-width: 600px) {
+           body {
+               flex-direction: column;
+           }
+
+           .sidebar {
+               width: 100%;
+               flex-direction: row;
+               padding: 10px;
+               justify-content: space-between;
+               height: auto;
+           }
+
+           .nav-menu {
+               flex-direction: row;
+               width: auto;
+           }
+
+           .profile-section {
+               display: none;
+           }
+
+           .logo-text {
+               margin: 0;
+               text-align: left;
+           }
+
+           .dashboard-grid {
+               grid-template-columns: 1fr;
+           }
+       }
+
+       /* --- Style cho Ô tìm kiếm --- */
+       .search-wrapper {
+           position: relative;
+           width: 250px;
+       }
+
+       .search-input {
+           width: 100%;
+           padding: 8px 10px 8px 35px;
+           /* Chừa chỗ cho icon */
+           border: 1px solid #ddd;
+           border-radius: 20px;
+           outline: none;
+           transition: 0.3s;
+       }
+
+       .search-input:focus {
+           border-color: var(--color-teal);
+           box-shadow: 0 0 5px rgba(38, 198, 218, 0.3);
+       }
+
+       .search-icon {
+           position: absolute;
+           left: 12px;
+           top: 50%;
+           transform: translateY(-50%);
+           color: #999;
+           font-size: 0.8rem;
+       }
+
+       /* --- Style cho Table --- */
+       .table-container {
+           overflow-x: auto;
+       }
+
+       .data-table {
+           width: 100%;
+           border-collapse: collapse;
+           font-size: 0.9rem;
+       }
+
+       .data-table th {
+           text-align: left;
+           padding: 12px 15px;
+           color: #78909c;
+           border-bottom: 2px solid #f1f1f1;
+           font-weight: 500;
+       }
+
+       .data-table td {
+           padding: 12px 15px;
+           border-bottom: 1px solid #f1f1f1;
+           color: #333;
+       }
+
+       .data-table tbody tr.main-row:hover {
+           background-color: #f9f9f9;
+           cursor: pointer;
+       }
+
+       /* --- Badge trạng thái (Màu sắc) --- */
+       .badge {
+           padding: 4px 8px;
+           border-radius: 12px;
+           font-size: 0.75rem;
+           font-weight: 500;
+       }
+
+       .badge-good {
+           background-color: #e0f2f1;
+           color: #00695c;
+       }
+
+       .badge-warn {
+           background-color: #fff3e0;
+           color: #ef6c00;
+       }
+
+       .badge-bad {
+           background-color: #ffebee;
+           color: #c62828;
+       }
+
+       /* --- Modal (Dialog) Styles --- */
+       .modal-overlay {
+           display: none;
+           /* Mặc định ẩn */
+           position: fixed;
+           z-index: 2000;
+           /* Nổi lên trên cùng */
+           left: 0;
+           top: 0;
+           width: 100%;
+           height: 100%;
+           background-color: rgba(0, 0, 0, 0.5);
+           /* Nền đen mờ */
+           backdrop-filter: blur(4px);
+           /* Làm mờ background phía sau cho đẹp */
+           align-items: center;
+           justify-content: center;
+           animation: fadeIn 0.3s;
+       }
+
+       .modal-content {
+           background-color: #fff;
+           width: 90%;
+           max-width: 500px;
+           /* Độ rộng tối đa của dialog */
+           border-radius: 12px;
+           padding: 30px;
+           position: relative;
+           box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+           animation: slideUp 0.3s;
+       }
+
+       /* Nút đóng X */
+       .close-btn {
+           position: absolute;
+           top: 15px;
+           right: 20px;
+           font-size: 28px;
+           font-weight: bold;
+           color: #aaa;
+           cursor: pointer;
+           transition: 0.2s;
+       }
+
+       .close-btn:hover {
+           color: #f44336;
+       }
+
+       /* Bố cục bên trong Modal */
+       .modal-header {
+           display: flex;
+           align-items: center;
+           gap: 20px;
+       }
+
+       .modal-avatar {
+           width: 80px;
+           height: 80px;
+           border-radius: 50%;
+           object-fit: cover;
+           border: 3px solid var(--color-teal);
+       }
+
+       /* Nút bấm trong modal */
+       .btn-action {
+           flex: 1;
+           padding: 10px;
+           border: none;
+           border-radius: 6px;
+           color: white;
+           cursor: pointer;
+           font-weight: 500;
+           transition: 0.2s;
+       }
+
+       .btn-action:hover {
+           opacity: 0.9;
+       }
+
+       .btn-teal {
+           background-color: var(--color-teal);
+       }
+
+       .btn-pink {
+           background-color: var(--color-pink);
+       }
+
+       /* Animation */
+       @keyframes slideUp {
+           from {
+               transform: translateY(50px);
+               opacity: 0;
+           }
+
+           to {
+               transform: translateY(0);
+               opacity: 1;
+           }
+       }
+
+       /* --- CSS CHO RADAR CHART (BẮT BUỘC THÊM) --- */
+.radar-chart-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.radar-svg {
+    width: 220px;
+    height: 180px;
+    overflow: visible;
+}
+
+/* Đường lưới nền nét đứt */
+.radar-grid {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 1;
+    stroke-dasharray: 3 3; 
+}
+
+/* Trục từ tâm */
+.radar-axis {
+    stroke: #e0e0e0;
+    stroke-width: 1;
+}
+
+/* Vùng tô màu dữ liệu hành vi */
+.radar-area {
+    fill: rgba(171, 71, 188, 0.4); /* Màu tím trong suốt */
+    stroke: var(--color-purple);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 2px rgba(171, 71, 188, 0.5)); /* Hiệu ứng phát sáng nhẹ */
+    transition: all 1s ease;
+}
+.card:hover .radar-area {
+    fill: rgba(171, 71, 188, 0.6); /* Đậm lên khi hover */
+}
+
+/* Điểm tròn ở các đỉnh */
+.radar-point {
+    fill: white;
+    stroke: var(--color-pink);
+    stroke-width: 2;
+}
+
+/* Chữ chú thích các góc */
+.radar-label {
+    font-size: 9px;
+    fill: #78909c;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+/* Hiệu ứng cột mọc lên từ dưới */
+.bar {
+    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s;
+    width: 12px; 
+    border-radius: 3px;
+    min-height: 4px; /* Để cột 0h vẫn hiện chút xíu cho đẹp */
+}
+
+/* Tooltip đơn giản khi hover vào cột (Optional) */
+.bar-wrapper:hover .bar {
+    opacity: 0.8;
+}
